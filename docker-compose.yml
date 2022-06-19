@@ -61,7 +61,23 @@ services:
     volumes:
       - nrsn:/home/94r4d0x/.node-red
     links:
+      - mongodb  
+      
+  nsr3:
+    public: true
+    build: ./node-red1
+    environment:
+      - TZ=Asia/Tokyo
+      - DB_HOST=mongodb://mongodb:27017
+      - secret=dev
+    ports:
+      - 1880
+    volumes:
+      - nrsn:/home/94r4d0x/.node-red
+    links:
       - mongodb
+      
+   
  
       
 volumes:
@@ -71,7 +87,7 @@ volumes:
     size: 500MGi
   mongodb_data:
     driver: local
-    size: 0.8Gi
+    size: 1Gi
     
 networks:
   pic:
