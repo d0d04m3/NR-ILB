@@ -134,19 +134,7 @@ services:
       - nrsn7-drive:/home/94r4d0x/.node-red
     links:
       - mongodb
-  nsr8:
-    public: true
-    build: ./node-red1
-    environment:
-      - TZ=Asia/Tokyo
-      - DB_HOST=mongodb://mongodb:27017
-      - secret=dev
-    ports:
-      - 1880
-    volumes:
-      - nrsn8-drive:/home/94r4d0x/.node-red
-    links:
-      - mongodb
+
    
  
       
@@ -166,8 +154,6 @@ volumes:
   nrsn6-drive:
     size: 250Mi
   nrsn7-drive:
-    size: 250Mi
-  nrsn8-drive:
     size: 250Mi
   mongodb_data:
     driver: local
