@@ -1,0 +1,11 @@
+{
+    "name": "node-red-slim-container",
+    "description": "A Slim Node-RED Docker Image running on Alpine Container",
+    "dependencies": {
+        "node-red": "latest",
+        "node-red-dashboard": "*"
+    },
+    "scripts": {
+        "start": "node $NODE_OPTIONS node_modules/node-red/red.js $FLOWS --userDir=/data"
+    }
+}
