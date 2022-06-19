@@ -84,7 +84,7 @@ volumes:
   node-red:
     size: 500Mi
   nrsn:
-    size: 500MGi
+    size: 500Mi
   mongodb_data:
     driver: local
     size: 1Gi
