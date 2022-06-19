@@ -1,6 +1,6 @@
 version: '3.9'
 services:
-    mongodb:
+  mongodb:
     public: true
     container_name: mongodb
     image: docker.io/bitnami/mongodb:5.0
@@ -20,7 +20,7 @@ services:
     volumes:
       - 'mongodb_data:/bitnami/mongodb'  
   
-    nr:
+  nr:
     public: true
     build: ./node-red1
     environment:
