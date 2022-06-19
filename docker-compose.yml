@@ -1,19 +1,6 @@
 version: '3.9'
 services:
-  reverseproxy:
-    image: reverseproxy_image
-    container_name: reverseproxy_container
-    build: .
-    ports:
-      - 80:80
-    restart: always
-    networks:
-      - pic
-    dns:
-      - 8.8.8.8
-      - 8.8.4.4
-  
-  mongodb:
+    mongodb:
     public: true
     container_name: mongodb
     image: docker.io/bitnami/mongodb:5.0
@@ -33,17 +20,20 @@ services:
     volumes:
       - 'mongodb_data:/bitnami/mongodb'  
   
-  nginx:
-    image: nginx_image
-    container_name: nginx_container
-    build: ./nginx
+    nr:
+    public: true
+    build: ./node-red1
+    environment:
+      - TZ=Asia/Tokyo
+      - DB_HOST=mongodb://mongodb:27017
+      - secret=dev
     ports:
-      - 80
-    restart: always
-    depends_on:
-      - reverseproxy
- 
-   
+      - 1880
+    volumes:
+      - node-red:/home/94r4d0x/.node-red
+    links:
+      - mongodb
+      
   nsr1:
     public: true
     build: ./node-red1
@@ -54,11 +44,10 @@ services:
     ports:
       - 1880
     volumes:
-      - node-red1:/home/94r4d0x/.node-red
+      - nrsn:/home/94r4d0x/.node-red
     links:
       - mongodb
-    depends_on:
-      - reverseproxy
+  
       
   nsr2:
     public: true
@@ -70,17 +59,16 @@ services:
     ports:
       - 1880
     volumes:
-      - node-red2:/home/94r4d0x/.node-red
+      - nrsn:/home/94r4d0x/.node-red
     links:
       - mongodb
-    depends_on:
-      - reverseproxy
+ 
       
 volumes:
-  node-red1:
-    size: 5Mi
-  node-red2:
-    size: 5MGi
+  node-red:
+    size: 500Mi
+  nrsn:
+    size: 500MGi
   mongodb_data:
     driver: local
     size: 0.8Gi
