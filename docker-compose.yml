@@ -19,6 +19,11 @@ services:
       - "27017:27017"
     volumes:
       - 'mongodb_data:/bitnami/mongodb'  
+      
+    redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
   
   nr:
     public: true
@@ -34,6 +39,7 @@ services:
     links:
       - mongodb
       
+  
   nsr1:
     public: true
     build: ./node-red1
@@ -44,7 +50,7 @@ services:
     ports:
       - 1880
     volumes:
-      - nrsn:/home/94r4d0x/.node-red
+      - nrsn1-drive:/home/94r4d0x/.node-red
     links:
       - mongodb
   
@@ -59,7 +65,7 @@ services:
     ports:
       - 1880
     volumes:
-      - nrsn:/home/94r4d0x/.node-red
+      - nrsn2-drive:/home/94r4d0x/.node-red
     links:
       - mongodb  
       
@@ -73,21 +79,99 @@ services:
     ports:
       - 1880
     volumes:
-      - nrsn:/home/94r4d0x/.node-red
+      - nrsn3-drive:/home/94r4d0x/.node-red
     links:
       - mongodb
-      
+  nsr4:
+    public: true
+    build: ./node-red1
+    environment:
+      - TZ=Asia/Tokyo
+      - DB_HOST=mongodb://mongodb:27017
+      - secret=dev
+    ports:
+      - 1880
+    volumes:
+      - nrsn4-drive:/home/94r4d0x/.node-red
+    links:
+      - mongodb
+  nsr5:
+    public: true
+    build: ./node-red1
+    environment:
+      - TZ=Asia/Tokyo
+      - DB_HOST=mongodb://mongodb:27017
+      - secret=dev
+    ports:
+      - 1880
+    volumes:
+      - nrsn5-drive:/home/94r4d0x/.node-red
+    links:
+      - mongodb
+  nsr6:
+    public: true
+    build: ./node-red1
+    environment:
+      - TZ=Asia/Tokyo
+      - DB_HOST=mongodb://mongodb:27017
+      - secret=dev
+    ports:
+      - 1880
+    volumes:
+      - nrsn6-drive:/home/94r4d0x/.node-red
+    links:
+      - mongodb
+  nsr7:
+    public: true
+    build: ./node-red1
+    environment:
+      - TZ=Asia/Tokyo
+      - DB_HOST=mongodb://mongodb:27017
+      - secret=dev
+    ports:
+      - 1880
+    volumes:
+      - nrsn7-drive:/home/94r4d0x/.node-red
+    links:
+      - mongodb
+  nsr8:
+    public: true
+    build: ./node-red1
+    environment:
+      - TZ=Asia/Tokyo
+      - DB_HOST=mongodb://mongodb:27017
+      - secret=dev
+    ports:
+      - 1880
+    volumes:
+      - nrsn8-drive:/home/94r4d0x/.node-red
+    links:
+      - mongodb
    
  
       
 volumes:
   node-red:
-    size: 500Mi
-  nrsn:
-    size: 500Mi
+    size: 1Gi
+  nrsn1-drive:
+    size: 250Mi
+  nrsn2-drive:
+    size: 250Mi
+  nrsn3-drive:
+    size: 250Mi
+  nrsn4-drive:
+    size: 250Mi
+  nrsn5-drive:
+    size: 250Mi
+  nrsn6-drive:
+    size: 250Mi
+  nrsn7-drive:
+    size: 250Mi
+  nrsn8-drive:
+    size: 250Mi
   mongodb_data:
     driver: local
-    size: 1Gi
+    size: 2Gi
     
 networks:
   pic:
