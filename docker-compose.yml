@@ -65,7 +65,7 @@ services:
       
   nsr2:
     public: true
-     build:
+    build:
       context: ./node-red1
       dockerfile: Dockerfile
       args: 
@@ -83,7 +83,7 @@ services:
       
   nsr3:
     public: true
-     build:
+    build:
       context: ./node-red3
       dockerfile: Dockerfile
       args: 
