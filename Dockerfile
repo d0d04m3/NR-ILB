@@ -1,4 +1,3 @@
-FROM nodered/node-red
 FROM python:3.9.1-slim-buster AS development_build
 
 ARG NR_ENV_ACCESS_PATH
@@ -54,6 +53,7 @@ USER ${NR_USER}
 # package.json contains Node-RED NPM module and node dependencies
 #COPY /node-red1/package.json .
 COPY /node-red1/flows.json /data
+FROM nodered/node-red
 RUN npm install --unsafe-perm --no-update-notifier --no-fund --only=production
 
 
