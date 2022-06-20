@@ -28,8 +28,8 @@ services:
   nr:
     public: true
     build:
-      context: ./node-red1
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: /node-red1/Dockerfile
       args: 
         - NR_ENV_ACCESS_PATH=/home/94r4d0x/.node-red
         - NR_USER=94r4d0x
