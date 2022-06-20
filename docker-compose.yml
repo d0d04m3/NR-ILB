@@ -82,59 +82,8 @@ services:
       - nrsn3-drive:/home/94r4d0x/.node-red
     links:
       - mongodb
-  nsr4:
-    public: true
-    build: ./node-red1
-    environment:
-      - TZ=Asia/Tokyo
-      - DB_HOST=mongodb://mongodb:27017
-      - secret=dev
-    ports:
-      - 1880
-    volumes:
-      - nrsn4-drive:/home/94r4d0x/.node-red
-    links:
-      - mongodb
-  nsr5:
-    public: true
-    build: ./node-red1
-    environment:
-      - TZ=Asia/Tokyo
-      - DB_HOST=mongodb://mongodb:27017
-      - secret=dev
-    ports:
-      - 1880
-    volumes:
-      - nrsn5-drive:/home/94r4d0x/.node-red
-    links:
-      - mongodb
-  nsr6:
-    public: true
-    build: ./node-red1
-    environment:
-      - TZ=Asia/Tokyo
-      - DB_HOST=mongodb://mongodb:27017
-      - secret=dev
-    ports:
-      - 1880
-    volumes:
-      - nrsn6-drive:/home/94r4d0x/.node-red
-    links:
-      - mongodb
-  nsr7:
-    public: true
-    build: ./node-red1
-    environment:
-      - TZ=Asia/Tokyo
-      - DB_HOST=mongodb://mongodb:27017
-      - secret=dev
-    ports:
-      - 1880
-    volumes:
-      - nrsn7-drive:/home/94r4d0x/.node-red
-    links:
-      - mongodb
-
+ 
+  
    
  
       
@@ -147,14 +96,8 @@ volumes:
     size: 250Mi
   nrsn3-drive:
     size: 250Mi
-  nrsn4-drive:
-    size: 250Mi
-  nrsn5-drive:
-    size: 250Mi
-  nrsn6-drive:
-    size: 250Mi
-  nrsn7-drive:
-    size: 250Mi
+
+
   mongodb_data:
     driver: local
     size: 2Gi
