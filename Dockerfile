@@ -26,7 +26,7 @@ RUN set -ex && \
 USER root
 RUN mkdir -p ${NR_ENV_ACCESS_PATH} /data 
 #RUN touch /etc/ssh/ssh_known_hosts
-RUN adduser -h ${NR_ENV_ACCESS_PATH} -D -H n${NR_USER} -u 1000 
+RUN adduser -h ${NR_ENV_ACCESS_PATH} -D -H ${NR_USER} -u 1000 
 #RUN useradd --home-dir ${NR_ENV_ACCESS_PATH} --uid 1000 ${NR_USER}
 RUN chown -R ${NR_USER}:root /data && chmod -R g+rwX /data
 RUN chown -R ${NR_USER}:root ${NR_ENV_ACCESS_PATH} && chmod -R g+rwX ${NR_ENV_ACCESS_PATH}
