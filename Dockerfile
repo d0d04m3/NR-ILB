@@ -19,7 +19,7 @@ RUN set -ex && \
         openssh-client \
         ca-certificates \
         sudo \
-        python3
+        nodejs 
   
 
 #-----------------------
