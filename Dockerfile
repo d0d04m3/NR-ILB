@@ -1,17 +1,29 @@
-FROM alpine:3.16
+FROM alpine:latest
 
 ARG NR_ENV_ACCESS_PATH
 ARG NR_USER
 
 # System deps:
-RUN apk add --no-cache openssh-client nodejs
+RUN set -ex && \
+    apk add --no-cache \
+        bash \
+        tzdata \
+        iputils \
+        curl \
+        nano \
+        git \
+        openssl \
+        openssh-client \
+        ca-certificates \
+        sudo
   
 
 #-----------------------
 USER root
 RUN mkdir -p ${NR_ENV_ACCESS_PATH} /data 
 #RUN touch /etc/ssh/ssh_known_hosts
-RUN useradd --home-dir ${NR_ENV_ACCESS_PATH} --uid 1000 ${NR_USER}
+RUN adduser -h ${NR_ENV_ACCESS_PATH} -D -H n${NR_USER} -u 1000 
+#RUN useradd --home-dir ${NR_ENV_ACCESS_PATH} --uid 1000 ${NR_USER}
 RUN chown -R ${NR_USER}:root /data && chmod -R g+rwX /data
 RUN chown -R ${NR_USER}:root ${NR_ENV_ACCESS_PATH} && chmod -R g+rwX ${NR_ENV_ACCESS_PATH}
 
@@ -29,7 +41,7 @@ COPY /node-red1/flows.json /data
 ARG NR_ENV_ACCESS_PATH
 ARG NR_USER
 RUN node -v
-
+RUN sudo npm install -g --unsafe-perm node-red
 # Env variables
 ENV NODE_RED_VERSION=$NODE_RED_VERSION \
     NODE_PATH=${NR_ENV_ACCESS_PATH}/node_modules:/data/node_modules \
