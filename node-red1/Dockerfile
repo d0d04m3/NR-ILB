@@ -27,25 +27,11 @@ WORKDIR ${NR_ENV_ACCESS_PATH}
 COPY /data/known_hosts.sh .
 RUN ./known_hosts.sh /etc/ssh/ssh_known_hosts && rm ${NR_ENV_ACCESS_PATH}/known_hosts.sh
 
-#### Stage BUILD #######################################################################################################
-FROM base AS build
 
-# Install Build tools
-RUN apt-get update && apt-get install -y build-essential python && \
-    npm install --unsafe-perm --no-update-notifier --no-fund --only=production && \
-    npm uninstall node-red-node-gpio && \
-    cp -R node_modules prod_node_modules
-    
 # package.json contains Node-RED NPM module and node dependencies
 COPY package.json .
 COPY flows.json /data
 
-
-# Chown, install devtools & Clean up
-RUN chown -R ${NR_USER}:root ${NR_ENV_ACCESS_PATH} && \
-    apt-get update && apt-get install -y build-essential python-dev python3 && \
-    rm -r /tmp/*
-    
 USER ${NR_USER}
 
 # Env variables
