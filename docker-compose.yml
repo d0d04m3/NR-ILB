@@ -84,7 +84,7 @@ services:
   nsr3:
     public: true
     build:
-      context: ./node-red3
+      context: ./node-red1
       dockerfile: Dockerfile
       args: 
         - NR_ENV_ACCESS_PATH=/home/94r4d0x/.node-red/servers/ns3
