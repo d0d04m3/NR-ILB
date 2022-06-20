@@ -27,7 +27,11 @@ services:
   
   nr:
     public: true
-    build: ./node-red1
+    build:
+      context: ./node-red1
+      dockerfile: Dockerfile
+      args: 
+        - NR_ENV_ACCESS_PATH=/home/94r4d0x/.node-red
     environment:
       - TZ=Asia/Tokyo
       - DB_HOST=mongodb://mongodb:27017
@@ -42,7 +46,11 @@ services:
   
   nsr1:
     public: true
-    build: ./node-red1
+    build:
+      context: ./node-red1
+      dockerfile: Dockerfile
+      args: 
+        - NR_ENV_ACCESS_PATH=/home/94r4d0x/.node-red/servers/ns1
     environment:
       - TZ=Asia/Tokyo
       - DB_HOST=mongodb://mongodb:27017
@@ -50,14 +58,18 @@ services:
     ports:
       - 1880
     volumes:
-      - nrsn1-drive:/home/94r4d0x/.node-red
+      - node-red:/home/94r4d0x/.node-red/servers/ns1
     links:
       - mongodb
   
       
   nsr2:
     public: true
-    build: ./node-red1
+     build:
+      context: ./node-red1
+      dockerfile: Dockerfile
+      args: 
+        - NR_ENV_ACCESS_PATH=/home/94r4d0x/.node-red/servers/ns2
     environment:
       - TZ=Asia/Tokyo
       - DB_HOST=mongodb://mongodb:27017
@@ -65,13 +77,17 @@ services:
     ports:
       - 1880
     volumes:
-      - nrsn2-drive:/home/94r4d0x/.node-red
+      - node-red:/home/94r4d0x/.node-red/servers/ns2
     links:
       - mongodb  
       
   nsr3:
     public: true
-    build: ./node-red1
+     build:
+      context: ./node-red3
+      dockerfile: Dockerfile
+      args: 
+        - NR_ENV_ACCESS_PATH=/home/94r4d0x/.node-red/servers/ns3
     environment:
       - TZ=Asia/Tokyo
       - DB_HOST=mongodb://mongodb:27017
@@ -79,7 +95,7 @@ services:
     ports:
       - 1880
     volumes:
-      - nrsn3-drive:/home/94r4d0x/.node-red
+      - node-red:/home/94r4d0x/.node-red/servers/ns3
     links:
       - mongodb
  
