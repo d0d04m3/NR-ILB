@@ -52,8 +52,9 @@ RUN ./known_hosts.sh /etc/ssh/ssh_known_hosts && rm ${NR_ENV_ACCESS_PATH}/known_
 
 USER ${NR_USER}
 # package.json contains Node-RED NPM module and node dependencies
-COPY /node-red1/package.json .
+#COPY /node-red1/package.json .
 COPY /node-red1/flows.json /data
+RUN npm install --unsafe-perm --no-update-notifier --no-fund --only=production
 
 
 # Env variables
@@ -64,4 +65,5 @@ ENV NODE_RED_VERSION=$NODE_RED_VERSION \
     
 # Expose the listening port of node-red
 EXPOSE 1880
-ENTRYPOINT ["npm", "start", "--cache", "/data/.npm", "--", "--userDir", "/data"]
+"ENTRYPOINT ["npm", "start", "--cache", "/data/.npm", "--", "--userDir", "/data"]
+ENTRYPOINT npm start --  --userDir ${NR_ENV_ACCESS_PATH}
