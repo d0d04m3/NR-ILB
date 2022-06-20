@@ -12,13 +12,12 @@ WORKDIR ${NR_ENV_ACCESS_PATH}
 # Setup SSH known_hosts file
 COPY /data/known_hosts.sh .
 RUN ./known_hosts.sh /etc/ssh/ssh_known_hosts && rm ${NR_ENV_ACCESS_PATH}/known_hosts.sh
-
+USER ${NR_USER}
 
 # package.json contains Node-RED NPM module and node dependencies
-COPY package.json .
-COPY flows.json /data
+COPY /node-red1/package.json .
+COPY /node-red1/flows.json /data
 
-USER ${NR_USER}
 
 # Env variables
 ENV NODE_RED_VERSION=$NODE_RED_VERSION \
