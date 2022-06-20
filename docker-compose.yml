@@ -40,7 +40,7 @@ services:
     ports:
       - 1880
     volumes:
-      - node-red:/data
+      - node-red:/home/94r4d0x/.node-red
     links:
       - mongodb
       
