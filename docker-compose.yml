@@ -31,7 +31,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args: 
-        - NR_ENV_ACCESS_PATH=/home/94r4d0x/.node-red
+        - NR_ENV_ACCESS_PATH=/home/94r4d0x/
         - NR_USER=94r4d0x
     environment:
       - TZ=Asia/Tokyo
