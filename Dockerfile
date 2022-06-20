@@ -54,6 +54,8 @@ USER ${NR_USER}
 #COPY /node-red1/package.json .
 COPY /node-red1/flows.json /data
 FROM nodered/node-red
+ARG NR_ENV_ACCESS_PATH
+ARG NR_USER
 RUN npm install --unsafe-perm --no-update-notifier --no-fund --only=production
 
 
