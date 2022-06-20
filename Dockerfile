@@ -36,7 +36,7 @@ RUN apt-get update \
 
 #-----------------------
 USER root
-run mkdir /data
+RUN mkdir /data
 RUN useradd --home-dir ${NR_ENV_ACCESS_PATH} --uid 1000 ${NR_USER}
 RUN chown -R ${NR_USER}:root /data && chmod -R g+rwX /data
 RUN chown -R ${NR_USER}:root ${NR_ENV_ACCESS_PATH} && chmod -R g+rwX ${NR_ENV_ACCESS_PATH}
