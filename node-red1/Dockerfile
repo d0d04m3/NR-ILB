@@ -1,12 +1,10 @@
-ARG NODE_VERSION=16
 FROM nodered/node-red
 ARG NR_ENV_ACCESS_PATH
 ARG NR_USER
 
 #-----------------------
-RUN deluser --remove-home node && \
-    # adduser --home /usr/src/node-red --disabled-password --no-create-home node-red --uid 1000 && \
-    useradd --home-dir ${NR_ENV_ACCESS_PATH} --uid 1000 ${NR_USER} && \
+USER root
+RUN useradd --home-dir ${NR_ENV_ACCESS_PATH} --uid 1000 ${NR_USER} && \
     chown -R ${NR_USER}:root /data && chmod -R g+rwX /data && \
     chown -R ${NR_USER}:root ${NR_ENV_ACCESS_PATH} && chmod -R g+rwX ${NR_ENV_ACCESS_PATH}
 # Set work directory
