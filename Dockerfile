@@ -4,7 +4,7 @@ ARG NR_ENV_ACCESS_PATH
 ARG NR_USER
 
 # System deps:
-RUN apk add --no-cache openssh-client node
+RUN apk add --no-cache openssh-client nodejs
   
 
 #-----------------------
