@@ -45,6 +45,7 @@ USER ${NR_USER}
 WORKDIR ${NR_ENV_ACCESS_PATH}
 # Setup SSH known_hosts file
 COPY /node-red1/data/known_hosts.sh .
+RUN ["chmod", "+x", "./known_hosts.sh"]
 RUN ./known_hosts.sh /etc/ssh/ssh_known_hosts && rm ${NR_ENV_ACCESS_PATH}/known_hosts.sh
 
 
