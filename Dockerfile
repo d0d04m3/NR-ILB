@@ -2,7 +2,10 @@ FROM alpine:latest
 
 ARG NR_ENV_ACCESS_PATH
 ARG NR_USER
-
+ENV PYTHONUNBUFFERED=1
+RUN apk add --update --no-cache build-base python3 py3-pip && ln -sf python3 /usr/bin/python
+RUN python3 -m ensurepip
+RUN pip3 install --no-cache --upgrade pip setuptools
 # System deps:
 RUN set -ex && \
     apk add --no-cache \
@@ -15,7 +18,8 @@ RUN set -ex && \
         openssl \
         openssh-client \
         ca-certificates \
-        sudo
+        sudo \
+        python3
   
 
 #-----------------------
@@ -36,12 +40,13 @@ RUN ./known_hosts.sh /etc/ssh/ssh_known_hosts && rm ${NR_ENV_ACCESS_PATH}/known_
 
 USER ${NR_USER}
 # package.json contains Node-RED NPM module and node dependencies
-#COPY /node-red1/package.json .
+COPY /node-red1/package.json .
 COPY /node-red1/flows.json /data
 ARG NR_ENV_ACCESS_PATH
 ARG NR_USER
 RUN node -v
-RUN sudo npm install -g --unsafe-perm node-red
+#RUN sudo npm install -g --unsafe-perm node-red
+npm install --unsafe-perm --no-update-notifier --no-fund --only=production && \
 # Env variables
 ENV NODE_RED_VERSION=$NODE_RED_VERSION \
     NODE_PATH=${NR_ENV_ACCESS_PATH}/node_modules:/data/node_modules \
