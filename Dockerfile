@@ -22,7 +22,7 @@ COPY /node-red1/flows.json /data
 # Env variables
 ENV NODE_RED_VERSION=$NODE_RED_VERSION \
     NODE_PATH=${NR_ENV_ACCESS_PATH}/node_modules:/data/node_modules \
-    PATH=/usr/src/node-red/node_modules/.bin:${PATH} \
+    PATH=${NR_ENV_ACCESS_PATH}/node_modules/.bin:${PATH} \
     FLOWS=flows.json
     
 # Expose the listening port of node-red
