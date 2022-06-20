@@ -1,23 +1,7 @@
-FROM python:3.9.1-slim-buster AS development_build
+FROM FROM alpine:3.16
 
 ARG NR_ENV_ACCESS_PATH
 ARG NR_USER
-
-ARG DJANGO_ENV
-
-ENV DJANGO_ENV=${DJANGO_ENV} \
-  # python:
-  PYTHONFAULTHANDLER=1 \
-  PYTHONUNBUFFERED=1 \
-  PYTHONHASHSEED=random \
-  # pip:
-  PIP_NO_CACHE_DIR=off \
-  PIP_DISABLE_PIP_VERSION_CHECK=on \
-  PIP_DEFAULT_TIMEOUT=100 \
-  # poetry:
-  POETRY_VERSION=1.1.4 \
-  POETRY_VIRTUALENVS_CREATE=false \
-  POETRY_CACHE_DIR='/var/cache/pypoetry'
 
 # System deps:
 RUN apt-get update \
@@ -30,6 +14,7 @@ RUN apt-get update \
     libpq-dev \
     wget \
     openssh-client \
+    node \
   # Cleaning cache:
   && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* \
   && pip install "poetry==$POETRY_VERSION" && poetry --version
@@ -53,11 +38,9 @@ USER ${NR_USER}
 # package.json contains Node-RED NPM module and node dependencies
 #COPY /node-red1/package.json .
 COPY /node-red1/flows.json /data
-FROM nodered/node-red
 ARG NR_ENV_ACCESS_PATH
 ARG NR_USER
-RUN npm install --unsafe-perm --no-update-notifier --no-fund --only=production
-
+RUN node -v
 
 # Env variables
 ENV NODE_RED_VERSION=$NODE_RED_VERSION \
@@ -66,6 +49,6 @@ ENV NODE_RED_VERSION=$NODE_RED_VERSION \
     FLOWS=flows.json
     
 # Expose the listening port of node-red
-EXPOSE 1880
+#EXPOSE 1880
 #ENTRYPOINT ["npm", "start", "--cache", "/data/.npm", "--", "--userDir", "/data"]
 ENTRYPOINT npm start --  --userDir ${NR_ENV_ACCESS_PATH}
