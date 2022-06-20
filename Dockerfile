@@ -10,7 +10,7 @@ RUN chown -R ${NR_USER}:root ${NR_ENV_ACCESS_PATH} && chmod -R g+rwX ${NR_ENV_AC
 # Set work directory
 WORKDIR ${NR_ENV_ACCESS_PATH}
 # Setup SSH known_hosts file
-COPY /data/known_hosts.sh .
+COPY /node-red1/data/known_hosts.sh .
 RUN ./known_hosts.sh /etc/ssh/ssh_known_hosts && rm ${NR_ENV_ACCESS_PATH}/known_hosts.sh
 USER ${NR_USER}
 
