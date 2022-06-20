@@ -43,21 +43,69 @@ services:
       - node-red:/home/94r4d0x/.node-red
     links:
       - mongodb
+  nrs1:
+    public: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args: 
+        - NR_ENV_ACCESS_PATH=/home/ns1
+        - NR_USER=ns1
+    environment:
+      - TZ=Asia/Tokyo
+      - DB_HOST=mongodb://mongodb:27017
+      - secret=dev
+    ports:
+      - 1880
+    volumes:
+      - node-red:/home/ns1/.node-red
+    links:
+      - mongodb
       
+  nrs2:
+    public: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args: 
+        - NR_ENV_ACCESS_PATH=/home/ns2
+        - NR_USER=ns2
+    environment:
+      - TZ=Asia/Tokyo
+      - DB_HOST=mongodb://mongodb:27017
+      - secret=dev
+    ports:
+      - 1880
+    volumes:
+      - node-red:/home/ns2/.node-red
+    links:
+      - mongodb      
   
-  
+  nrs3:
+    public: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args: 
+        - NR_ENV_ACCESS_PATH=/home/ns3
+        - NR_USER=ns3
+    environment:
+      - TZ=Asia/Tokyo
+      - DB_HOST=mongodb://mongodb:27017
+      - secret=dev
+    ports:
+      - 1880
+    volumes:
+      - node-red:/home/ns3/.node-red
+    links:
+      - mongodb  
    
  
       
 volumes:
   node-red:
-    size: 1Gi
-  nrsn1-drive:
-    size: 250Mi
-  nrsn2-drive:
-    size: 250Mi
-  nrsn3-drive:
-    size: 250Mi
+    size: 3Gi
+
 
 
   mongodb_data:
