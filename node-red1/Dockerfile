@@ -5,17 +5,6 @@ ARG NR_USER
 
 #-----------------------
 RUN set -ex && \
-    apt-get update && apt-get install -y \
-        bash \
-        tzdata \
-        curl \
-        nano \
-        wget \
-        git \
-        openssl \
-        openssh-client \
-        ca-certificates && \
-    mkdir -p /usr/src/node-red /data && \
     deluser --remove-home node && \
     # adduser --home /usr/src/node-red --disabled-password --no-create-home node-red --uid 1000 && \
     useradd --home-dir ${NR_ENV_ACCESS_PATH} --uid 1000 ${NR_USER} && \
