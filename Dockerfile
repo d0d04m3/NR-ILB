@@ -4,20 +4,8 @@ ARG NR_ENV_ACCESS_PATH
 ARG NR_USER
 
 # System deps:
-RUN apt-get update \
-  && apt-get install --no-install-recommends -y \
-    bash \
-    build-essential \
-    curl \
-    gettext \
-    git \
-    libpq-dev \
-    wget \
-    openssh-client \
-    node \
-  # Cleaning cache:
-  && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* \
-  && pip install "poetry==$POETRY_VERSION" && poetry --version
+RUN apk add --no-cache openssh-client node
+  
 
 #-----------------------
 USER root
