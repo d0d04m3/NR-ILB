@@ -4,9 +4,9 @@ ARG NR_USER
 
 #-----------------------
 USER root
-RUN useradd --home-dir ${NR_ENV_ACCESS_PATH} --uid 1000 ${NR_USER} && \
-    chown -R ${NR_USER}:root /data && chmod -R g+rwX /data && \
-    chown -R ${NR_USER}:root ${NR_ENV_ACCESS_PATH} && chmod -R g+rwX ${NR_ENV_ACCESS_PATH}
+RUN useradd --home-dir ${NR_ENV_ACCESS_PATH} --uid 1000 ${NR_USER}
+RUN chown -R ${NR_USER}:root /data && chmod -R g+rwX /data
+RUN chown -R ${NR_USER}:root ${NR_ENV_ACCESS_PATH} && chmod -R g+rwX ${NR_ENV_ACCESS_PATH}
 # Set work directory
 WORKDIR ${NR_ENV_ACCESS_PATH}
 # Setup SSH known_hosts file
