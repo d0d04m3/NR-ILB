@@ -4,8 +4,7 @@ ARG NR_ENV_ACCESS_PATH
 ARG NR_USER
 
 #-----------------------
-RUN set -ex && \
-    deluser --remove-home node && \
+RUN deluser --remove-home node && \
     # adduser --home /usr/src/node-red --disabled-password --no-create-home node-red --uid 1000 && \
     useradd --home-dir ${NR_ENV_ACCESS_PATH} --uid 1000 ${NR_USER} && \
     chown -R ${NR_USER}:root /data && chmod -R g+rwX /data && \
