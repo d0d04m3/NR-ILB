@@ -48,7 +48,7 @@ ARG NR_USER
 RUN node -v
 #RUN sudo npm install -g --unsafe-perm node-red
 RUN npm install --unsafe-perm --no-update-notifier --no-fund --only=production 
-RUN npm audit fix --force
+#RUN npm audit fix --force
 COPY /node-red1/data/settings.js ${NR_ENV_ACCESS_PATH}/.node-red
 # Env variables
 ENV NODE_RED_VERSION=$NODE_RED_VERSION \
