@@ -19,7 +19,8 @@ RUN set -ex && \
         openssh-client \
         ca-certificates \
         sudo \
-        nodejs 
+        nodejs \
+        npm
   
 
 #-----------------------
