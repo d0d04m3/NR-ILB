@@ -40,29 +40,6 @@ RUN apt-get update && apt-get install -y build-essential python && \
 COPY package.json .
 COPY flows.json /data
 
-#### Stage RELEASE #####################################################################################################
-FROM base AS RELEASE
-ARG BUILD_DATE
-ARG BUILD_VERSION
-ARG BUILD_REF
-ARG NODE_RED_VERSION
-ARG ARCH
-ARG TAG_SUFFIX=default
-
-LABEL org.label-schema.build-date=${BUILD_DATE} \
-    org.label-schema.docker.dockerfile=".docker/Dockerfile.debian" \
-    org.label-schema.license="Apache-2.0" \
-    org.label-schema.name="Node-RED" \
-    org.label-schema.version=${BUILD_VERSION} \
-    org.label-schema.description="Low-code programming for event-driven applications." \
-    org.label-schema.url="https://nodered.org" \
-    org.label-schema.vcs-ref=${BUILD_REF} \
-    org.label-schema.vcs-type="Git" \
-    org.label-schema.vcs-url="https://github.com/node-red/node-red-docker" \
-    org.label-schema.arch=${ARCH} \
-    authors="Dave Conway-Jones, Nick O'Leary, James Thomas, Raymond Mouthaan"
-
-COPY --from=build ${NR_ENV_ACCESS_PATH}/prod_node_modules ./node_modules
 
 # Chown, install devtools & Clean up
 RUN chown -R ${NR_USER}:root ${NR_ENV_ACCESS_PATH} && \
