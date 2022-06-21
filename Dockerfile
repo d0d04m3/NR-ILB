@@ -20,7 +20,10 @@ RUN set -ex && \
         ca-certificates \
         sudo \
         nodejs \
-        npm
+        npm \
+        net-tools \
+        iputils \
+        
   
 
 #-----------------------
