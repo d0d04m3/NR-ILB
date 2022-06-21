@@ -22,7 +22,7 @@ RUN set -ex && \
         nodejs \
         npm \
         net-tools \
-        iputils \
+        iputils 
         
   
 
