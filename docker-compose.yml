@@ -1,8 +1,8 @@
 version: '3.9'
 services:
-  MQTTbroker:
+  mqttbroker:
     public: true
-    container_name: MQTTbroker
+    container_name: mqttbroker
     image: eclipse-mosquitto:1.6.13
     restart: unless-stopped
     ports:
@@ -50,7 +50,7 @@ services:
       - node-red:/home/94r4d0x/.node-red
     links:
       - mongodb
-      - MQTTbroker
+      - mqttbroker
   nrs1:
     public: true
     build:
@@ -69,7 +69,7 @@ services:
       - node-red:/home/ns1/.node-red
     links:
       - mongodb
-      - MQTTbroker
+      - mqttbroker
       
   nrs2:
     public: true
@@ -89,7 +89,7 @@ services:
       - node-red:/home/ns2/.node-red
     links:
       - mongodb
-      - MQTTbroker
+      - mqttbroker
   
   nrs3:
     public: true
@@ -109,7 +109,7 @@ services:
       - node-red:/home/ns3/.node-red
     links:
       - mongodb
-      - MQTTbroker
+      - mqttbroker
    
  
       
