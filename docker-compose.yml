@@ -128,13 +128,8 @@ networks:
     driver: host
     
 endpoints:
-  - path: /mqtt
-    service: mqttbroker
-    port: 1883
-  - path: /mongodb
-    service: mongodb
-    port: 27017
-  landing:
+  nodes3:
     - path: /
       service: nrs3
       port: 1880
+      
