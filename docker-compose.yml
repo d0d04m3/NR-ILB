@@ -5,7 +5,7 @@ services:
     container_name: mqttbroker
     image: eclipse-mosquitto:1.6.13
     restart: unless-stopped
-    ports: "1883:1883/tcp"
+    ports: "1883:1883"
    
       
   mongodb:
