@@ -55,6 +55,7 @@ services:
       - mongodb
       - mqttbroker
   nrs1:
+    public: true
     build:
       context: .
       dockerfile: Dockerfile
@@ -74,6 +75,7 @@ services:
       - mqttbroker
       
   nrs2:
+    public: true
     build:
       context: .
       dockerfile: Dockerfile
@@ -93,6 +95,7 @@ services:
       - mqttbroker
   
   nrs3:
+    public: true
     build:
       context: .
       dockerfile: Dockerfile
@@ -127,14 +130,5 @@ networks:
   pic:
     driver: host
     
-endpoints:
-  - path: /node1
-    service: nrs1
-    port: 1880
-  - path: /node2
-    service: nrs2
-    port: 1880
-  - path: /node3
-    service: nrs3
-    port: 1880
+
       
