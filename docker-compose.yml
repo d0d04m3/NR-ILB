@@ -6,7 +6,8 @@ services:
     image: eclipse-mosquitto:1.6.13
     restart: unless-stopped
     ports:
-      - "1883:1883"
+      - 1883
+      
   mongodb:
     public: true
     container_name: mongodb
@@ -46,6 +47,7 @@ services:
       - secret=dev
     ports:
       - 1880
+      - 1883
     volumes:
       - node-red:/home/94r4d0x/.node-red
     links:
