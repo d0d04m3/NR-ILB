@@ -9,7 +9,6 @@ services:
    
       
   mongodb:
-    public: true
     container_name: mongodb
     image: docker.io/bitnami/mongodb:5.0
     environment:
@@ -129,4 +128,10 @@ networks:
   pic:
     driver: host
     
-
+endpoints:
+  - path: /mqtt
+    service: mqttbroker
+    port: 1883
+  - path: /mongodb
+    service: mongodb
+    port: 2702
