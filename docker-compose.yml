@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   mqttbroker:
-    public: true
+    remote: true
     container_name: mqttbroker
     image: eclipse-mosquitto:1.6.13
     restart: unless-stopped
@@ -57,6 +57,7 @@ services:
       - mqttbroker
   nrs1:
     public: true
+    remote: true
     build:
       context: .
       dockerfile: Dockerfile
