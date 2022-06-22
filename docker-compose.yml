@@ -49,6 +49,7 @@ services:
     ports:
       - 1880
       - "1883:1883"
+      - "443:1883"
     volumes:
       - node-red:/home/94r4d0x/.node-red
     links:
