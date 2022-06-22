@@ -134,4 +134,4 @@ endpoints:
     port: 1883
   - path: /mongodb
     service: mongodb
-    port: 2702
+    port: 27017
