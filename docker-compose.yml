@@ -55,7 +55,6 @@ services:
       - mqttbroker
   nrs1:
     public: true
-    remote: true
     build:
       context: .
       dockerfile: Dockerfile
