@@ -134,6 +134,7 @@ endpoints:
   - path: /mongodb
     service: mongodb
     port: 27017
-  - path: /ns3
-    service: nrs3
-    port: 1880
+  landing:
+    - path: /
+      service: nrs3
+      port: 1880
