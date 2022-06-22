@@ -127,7 +127,7 @@ networks:
   pic:
     driver: host
     
- endpoints:
+endpoints:
   - path: /node1
     service: nrs1
     port: 1880
