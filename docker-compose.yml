@@ -1,12 +1,11 @@
 version: '3.9'
 services:
   mqttbroker:
-    remote: true
     container_name: mqttbroker
     image: eclipse-mosquitto:1.6.13
     restart: unless-stopped
     ports:
-      - "443:1883"
+      - "mqttbroker-skynet-cloud.cloud.okteto.net:443:1883"
    
       
   mongodb:
