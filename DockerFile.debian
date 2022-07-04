@@ -13,11 +13,11 @@ RUN set -ex && \
         openssh-client \
         ca-certificates && \
    
-RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+RUN curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 RUN apt-get install nodejs
 RUN node -v
 RUN apt-get update && apt-get install -y build-essential python && \
-    npm  install -g --unsafe-perm node-red
+    npm install -g --unsafe-perm node-red \
     npm uninstall node-red-node-gpio && \
 EXPOSE 1880
 RUN node-red
