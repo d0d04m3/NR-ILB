@@ -38,7 +38,7 @@ services:
     public: true
     build:
       context: .
-      dockerfile: Dockerfile.debian
+      dockerfile: DockerFile.debian
       args: 
         - NR_ENV_ACCESS_PATH=/home/94r4d0x
         - NR_USER=94r4d0x
