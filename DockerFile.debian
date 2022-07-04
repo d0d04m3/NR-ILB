@@ -12,6 +12,8 @@ RUN set -ex && \
         git \
         openssl \
         openssh-client \
+        nodejs
+        npm \
         ca-certificates && \
    
 
