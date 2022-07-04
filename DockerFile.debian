@@ -1,5 +1,4 @@
-FROM node:ubuntu-22.04-nodejs-16.14.2
-
+FROM ubuntu:20.04
 
 USER root
 RUN set -ex && \
