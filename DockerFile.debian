@@ -13,7 +13,6 @@ RUN set -ex && \
         openssl \
         openssh-client \
         nodejs
-        npm \
         ca-certificates && \
    
 
