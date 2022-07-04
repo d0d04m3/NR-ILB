@@ -12,7 +12,7 @@ RUN set -ex && \
         git \
         openssl \
         openssh-client \
-        nodejs
+        nodejs \
         ca-certificates && \
    
 
